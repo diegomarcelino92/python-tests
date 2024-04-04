@@ -21,4 +21,5 @@ class TestEggsWithBacos(TestCase):
         self.assertEqual(eggs_with_bacon(1, 1), 'bacon with eggs')
 
 
-main(verbosity=2)
+if __name__ == '__main__':
+    main(verbosity=2)

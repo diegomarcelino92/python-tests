@@ -1,11 +1,10 @@
-import unittest
-from unittest.mock import patch
+from unittest import TestCase, main, mock
 
 import requests
 from cake import CakeRecipe
 
 
-class TestCake(unittest.TestCase):
+class TestCake(TestCase):
 
     def setUp(self) -> None:
         self.cake = CakeRecipe()
@@ -19,17 +18,17 @@ class TestCake(unittest.TestCase):
         self.assertEqual(self.cake.ingredients, ['flour', 'sugar', 'eggs'])
 
     def test_cake_should_roast(self):
-        with patch.object(requests, 'get') as mock_get:
+        with mock.patch.object(requests, 'get') as mock_get:
             mock_get.return_value.ok = True
 
             self.assertEqual(self.cake.roast(), 'Roasted')
 
     def test_cake_should_not_roast(self):
-        with patch.object(requests, 'get') as mock_get:
+        with mock.patch.object(requests, 'get') as mock_get:
             mock_get.return_value.ok = False
 
             self.assertEqual(self.cake.roast(), 'Not Roasted')
 
 
 if __name__ == '__main__':
-    unittest.main(verbosity=2)
+    main(verbosity=2)
